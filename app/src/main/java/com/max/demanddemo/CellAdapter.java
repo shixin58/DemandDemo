@@ -15,10 +15,12 @@ import java.util.List;
  * <p>Created by shixin on 2018/11/6.
  */
 public class CellAdapter extends BaseRecyclerAdapter<RecyclerView.ViewHolder, TopicVideoModel.VideoModel> {
-    private static int width;
+    public static int width;
+    public static int height;
 
     public CellAdapter(Context context) {
         width = (int) (context.getResources().getDisplayMetrics().widthPixels/3.5);
+        height = width *3/2;
     }
 
     public void setList(List<TopicVideoModel.VideoModel> list) {

@@ -1,6 +1,7 @@
 package com.max.demanddemo;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,11 +24,13 @@ public class DemoAdapter extends RecyclerViewAdapter {
     }
 
     public void setList(List<TopicVideoModel> list) {
+        int oldSize = mList.size();
         mList.clear();
+        notifyItemRangeRemoved(0, oldSize);
         if(list!=null && !list.isEmpty()) {
             mList.addAll(list);
+            notifyItemRangeInserted(0, list.size());
         }
-        notifyDataSetChanged();
     }
 
     @Override
@@ -46,7 +49,18 @@ public class DemoAdapter extends RecyclerViewAdapter {
         CelebrityViewHolder celebrityViewHolder = (CelebrityViewHolder) view;
         TopicVideoModel topicVideoModel = mList.get(position);
         celebrityViewHolder.textView.setText(topicVideoModel.topicName);
-        CellAdapter cellAdapter = (CellAdapter) celebrityViewHolder.recyclerView.getAdapter();
+
+        final CellAdapter cellAdapter = new CellAdapter(getContext());
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) celebrityViewHolder.recyclerView.getLayoutParams();
+        layoutParams.height = CellAdapter.height;
+        celebrityViewHolder.recyclerView.setLayoutParams(layoutParams);
+        celebrityViewHolder.recyclerView.setAdapter(cellAdapter);
+        cellAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(view.getContext(), ""+cellAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+            }
+        });
         cellAdapter.setList(topicVideoModel.list);
     }
 
@@ -59,14 +73,6 @@ public class DemoAdapter extends RecyclerViewAdapter {
             recyclerView = (RecyclerView) itemView.findViewById(R.id.recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(),
                     LinearLayoutManager.HORIZONTAL, false));
-            final CellAdapter cellAdapter = new CellAdapter(itemView.getContext());
-            recyclerView.setAdapter(cellAdapter);
-            cellAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Toast.makeText(view.getContext(), ""+cellAdapter.getItem(position), Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 }
