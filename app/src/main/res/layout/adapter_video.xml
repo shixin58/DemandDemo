@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingRight="3dp">
+
+    <ImageView
+        android:id="@+id/iv_thumbnail"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="2:3"
+        android:scaleType="centerCrop"
+        tools:src="@mipmap/beauty"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="@id/iv_thumbnail"
+        app:layout_constraintRight_toRightOf="@id/iv_thumbnail"
+        app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="12dp"
+        tools:text="我买了一个假车么？"/>
+</android.support.constraint.ConstraintLayout>
