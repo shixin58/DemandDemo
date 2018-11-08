@@ -16,7 +16,8 @@ import java.util.List;
 /**
  * <p>Created by shixin on 2018/11/6.
  */
-public class DemoAdapter extends RecyclerViewAdapter {
+public class DemoAdapter extends RecyclerViewAdapter
+        implements BaseRecyclerAdapter.OnItemClickListener {
     private List<TopicVideoModel> mList = new ArrayList<>();
 
     public DemoAdapter(Context context) {
@@ -52,20 +53,20 @@ public class DemoAdapter extends RecyclerViewAdapter {
         celebrityViewHolder.textView.setText(topicVideoModel.topicName);
 
         // notifyDataSetChanged()有时UI不刷新，所以直接重新实例化并设置Adapter
-        final CellAdapter cellAdapter = new CellAdapter(getContext());
-        // 22.0.0支持包RecyclerView设置wrap_content无效，需手动设置高度
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) celebrityViewHolder.recyclerView.getLayoutParams();
-        layoutParams.height = CellAdapter.height;
-        celebrityViewHolder.recyclerView.setLayoutParams(layoutParams);
+        final CellAdapter cellAdapter = new CellAdapter();
         celebrityViewHolder.recyclerView.setAdapter(cellAdapter);
-        cellAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                // Toast比Logcat更方便查看
-                Toast.makeText(view.getContext(), ""+cellAdapter.getItem(position), Toast.LENGTH_SHORT).show();
-            }
-        });
+        // 让DemoAdapter实现OnItemClickListener，少生成对象
+        cellAdapter.setOnItemClickListener(this);
         cellAdapter.setList(topicVideoModel.list);
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        if(view.getTag() instanceof TopicVideoModel.VideoModel) {
+            TopicVideoModel.VideoModel videoModel = (TopicVideoModel.VideoModel) view.getTag();
+            // Toast比Logcat更方便查看
+            Toast.makeText(view.getContext(), ""+videoModel, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static class CelebrityViewHolder extends RecyclerView.ViewHolder {
@@ -77,6 +78,10 @@ public class DemoAdapter extends RecyclerViewAdapter {
             recyclerView = (RecyclerView) itemView.findViewById(R.id.recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(),
                     LinearLayoutManager.HORIZONTAL, false));
+            // 22.0.0支持包RecyclerView设置wrap_content无效，需手动设置高度
+            ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) recyclerView.getLayoutParams();
+            layoutParams.height = CellAdapter.CELL_HEIGHT;
+            recyclerView.setLayoutParams(layoutParams);
         }
     }
 }

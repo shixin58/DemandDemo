@@ -11,6 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * 将ListView中getView拆分为onCreateViewHolder和onBindViewHolder
+ * @see android.widget.Adapter#getView(int, View, ViewGroup)
+ * @see RecyclerView.Adapter#onCreateViewHolder(ViewGroup, int)
+ * @see RecyclerView.Adapter#onBindViewHolder(RecyclerView.ViewHolder, int)
  * <p>Created by shixin on 2018/4/19.
  */
 public abstract class BaseRecyclerAdapter<V extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<V> implements View.OnClickListener {
@@ -84,6 +88,7 @@ public abstract class BaseRecyclerAdapter<V extends RecyclerView.ViewHolder, T> 
     @Override
     public void onBindViewHolder(@NonNull V holder, int position) {
         if(mOnItemClickListener!=null) {
+            // 让BaseRecyclerAdapter实现OnClickListener，少生成对象
             holder.itemView.setOnClickListener(this);
         }
         onBindVH(holder, position);
