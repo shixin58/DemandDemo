@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+        // case后跟常量，编译器去重
         switch (view.getId()) {
             case R.id.tv_recyclerview:
                 Intent intent = new Intent(this, RecyclerViewActivity.class);

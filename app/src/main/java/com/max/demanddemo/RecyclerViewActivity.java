@@ -18,6 +18,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        // 总共4步：1、拿到RecyclerView实例，2、设置LayoutManager，3、设置Adapter，4、刷新数据
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         DemoAdapter demoAdapter = new DemoAdapter(this);

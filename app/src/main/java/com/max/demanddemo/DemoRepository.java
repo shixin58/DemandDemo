@@ -9,6 +9,7 @@ import java.util.List;
 public class DemoRepository {
     public static List<TopicVideoModel> getAllTopicVideos() {
         List<TopicVideoModel> list = new ArrayList<>();
+        // 用for循环构造假数据list
         for(int i=0;i<10;i++) {
             TopicVideoModel topicVideoModel = new TopicVideoModel();
             topicVideoModel.topicName = "民间达人";

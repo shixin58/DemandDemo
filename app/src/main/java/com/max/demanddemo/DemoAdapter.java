@@ -26,6 +26,7 @@ public class DemoAdapter extends RecyclerViewAdapter {
     public void setList(List<TopicVideoModel> list) {
         int oldSize = mList.size();
         mList.clear();
+        // 试用RecyclerView的局部刷新
         notifyItemRangeRemoved(0, oldSize);
         if(list!=null && !list.isEmpty()) {
             mList.addAll(list);
@@ -50,7 +51,9 @@ public class DemoAdapter extends RecyclerViewAdapter {
         TopicVideoModel topicVideoModel = mList.get(position);
         celebrityViewHolder.textView.setText(topicVideoModel.topicName);
 
+        // notifyDataSetChanged()有时UI不刷新，所以直接重新实例化并设置Adapter
         final CellAdapter cellAdapter = new CellAdapter(getContext());
+        // 22.0.0支持包RecyclerView设置wrap_content无效，需手动设置高度
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) celebrityViewHolder.recyclerView.getLayoutParams();
         layoutParams.height = CellAdapter.height;
         celebrityViewHolder.recyclerView.setLayoutParams(layoutParams);
@@ -58,6 +61,7 @@ public class DemoAdapter extends RecyclerViewAdapter {
         cellAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                // Toast比Logcat更方便查看
                 Toast.makeText(view.getContext(), ""+cellAdapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
         });

@@ -33,7 +33,9 @@ public class CellAdapter extends BaseRecyclerAdapter<RecyclerView.ViewHolder, To
 
     @Override
     public RecyclerView.ViewHolder onCreateVH(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_video, parent, false);
+//        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_video, parent, false);
+        LayoutInflater layoutInflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View itemView = layoutInflater.inflate(R.layout.adapter_video, parent, false);
         return new CellViewHolder(itemView);
     }
 
@@ -51,6 +53,7 @@ public class CellAdapter extends BaseRecyclerAdapter<RecyclerView.ViewHolder, To
         public CellViewHolder(View itemView) {
             super(itemView);
             ivThumbnail = (ImageView) itemView.findViewById(R.id.iv_thumbnail);
+            // 按屏幕宽度设置图片宽，按xml里设置的ratio自动设置高
             ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) ivThumbnail.getLayoutParams();
             layoutParams.width = width;
             ivThumbnail.setLayoutParams(layoutParams);

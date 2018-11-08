@@ -14,6 +14,7 @@ public class TopicVideoModel {
 
         @Override
         public String toString() {
+            // 覆写toString方便查看对象信息
             return TopicVideoModel.class.getSimpleName()+"["+resId+", "+name+"]";
         }
     }
