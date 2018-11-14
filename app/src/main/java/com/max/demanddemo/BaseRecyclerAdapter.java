@@ -17,7 +17,8 @@ import java.util.List;
  * @see RecyclerView.Adapter#onBindViewHolder(RecyclerView.ViewHolder, int)
  * <p>Created by shixin on 2018/4/19.
  */
-public abstract class BaseRecyclerAdapter<V extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<V> implements View.OnClickListener {
+public abstract class BaseRecyclerAdapter<V extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter<V>
+        implements View.OnClickListener {
     protected OnItemClickListener mOnItemClickListener;
     protected WeakReference<RecyclerView> mRecyclerView;
     protected List<T> mList = new ArrayList<>();
@@ -89,6 +90,7 @@ public abstract class BaseRecyclerAdapter<V extends RecyclerView.ViewHolder, T> 
     public void onBindViewHolder(@NonNull V holder, int position) {
         if(mOnItemClickListener!=null) {
             // 让BaseRecyclerAdapter实现OnClickListener，少生成对象
+            // item持有Adapter引用，Adapter持有RecyclerView引用，发生内存泄漏
             holder.itemView.setOnClickListener(this);
         }
         onBindVH(holder, position);
