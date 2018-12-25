@@ -1,14 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('../sign/jacob.keystore')
-            storePassword '123456'
-            keyAlias 'max'
-            keyPassword '123456'
-        }
-    }
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
     defaultConfig {
@@ -18,20 +10,30 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-            zipAlignEnabled true
-            shrinkResources true
+            storeFile file('../sign/jacob.keystore')
+            storePassword '123456'
+            keyAlias 'max'
+            keyPassword '123456'
         }
+    }
+    buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            minifyEnabled false
             applicationIdSuffix '.debug'
             debuggable true
             jniDebuggable true
         }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled true
+            shrinkResources true
+        }
+
     }
 }
 
@@ -40,4 +42,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:recyclerview-v7:25.3.1'
+
+    testCompile 'junit:junit:4.12'
 }
