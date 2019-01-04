@@ -18,5 +18,7 @@
         </activity>
         <activity android:name=".RecyclerViewActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".BrightnessActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>
