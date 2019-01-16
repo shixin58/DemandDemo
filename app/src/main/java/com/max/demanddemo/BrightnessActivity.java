@@ -2,6 +2,7 @@ package com.max.demanddemo;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -17,6 +18,8 @@ import android.widget.Toast;
  */
 public class BrightnessActivity extends AppCompatActivity {
     public static int MAX_BRIGHTNESS_VALUE = 255;
+    public static int MAX_VOLUME_VALUE = 15;
+    public static int MUTE_VOLUME_VALUE = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,27 @@ public class BrightnessActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 setBrightness(BrightnessActivity.this, progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        SeekBar volumeSeekBar = (SeekBar) findViewById(R.id.volume_seek_bar);
+        volumeSeekBar.setMax(MAX_VOLUME_VALUE);
+        int volume = getVolume(this);
+        volumeSeekBar.setProgress(volume);
+        volumeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setVolume(BrightnessActivity.this, progress);
             }
 
             @Override
@@ -85,10 +109,35 @@ public class BrightnessActivity extends AppCompatActivity {
         return brightnessMode;
     }
 
+    /**
+     * 获取系统音量
+     */
+    public static int getVolume(Context context) {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager == null) {
+            return MUTE_VOLUME_VALUE;
+        }
+        return audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+    }
+
+    /**
+     * 设置系统音量
+     */
+    public static void setVolume(Context context, int volume) {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager == null) {
+            return;
+        }
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+    }
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_get_brightness:
                 Toast.makeText(this, "brightness "+getBrightness(this), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_get_volume:
+                Toast.makeText(this, "brightness "+getVolume(this), Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
