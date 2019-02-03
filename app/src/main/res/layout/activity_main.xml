@@ -35,4 +35,25 @@
         android:gravity="center"
         android:onClick="onClick"
         android:text="set brightness Demo"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_set_brightness"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/tv_invoke_bdvideo"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_set_brightness"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="invoke bdvideo"/>
 </android.support.constraint.ConstraintLayout>
