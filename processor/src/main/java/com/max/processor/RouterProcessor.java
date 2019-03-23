@@ -1,6 +1,7 @@
 package com.max.processor;
 
 import com.google.auto.service.AutoService;
+import com.max.annotations.Template;
 
 import java.io.IOException;
 import java.io.Writer;

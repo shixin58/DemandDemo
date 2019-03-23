@@ -2,13 +2,11 @@ apply plugin: 'java-library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 project.group = 'com.github.shixin58'
-project.archivesBaseName = 'processor'
+project.archivesBaseName = 'annotations'
 project.version = '1.0.0'
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':annotations')
-    implementation 'com.google.auto.service:auto-service:1.0-rc4'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

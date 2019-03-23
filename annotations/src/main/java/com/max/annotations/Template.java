@@ -1,4 +1,4 @@
-package com.max.processor;
+package com.max.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
