@@ -1,3 +1,3 @@
-include ':app', ':jitpack_lib', ':compiler', ':processor', ':annotations'
+include ':app', ':jitpack_lib', ':compiler', ':processor', ':annotations', ':hero', ':baselib'
 
 rootProject.name = 'DemandDemo'
