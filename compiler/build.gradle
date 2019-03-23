@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 project.group = 'com.github.shixin58'
-project.archivesBaseName = 'jitpack_lib'
+project.archivesBaseName = 'compiler'
 project.version = '1.0.0'
 
 android {
