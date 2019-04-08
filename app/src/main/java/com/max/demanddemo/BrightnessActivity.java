@@ -29,7 +29,7 @@ public class BrightnessActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        SeekBar brightnessSeekBar = (SeekBar) findViewById(R.id.brightness_seek_bar);
+        SeekBar brightnessSeekBar = findViewById(R.id.brightness_seek_bar);
         brightnessSeekBar.setMax(MAX_BRIGHTNESS_VALUE);
         int brightness = getBrightness(this);
         int brightnessMode = getBrightnessMode(this);
@@ -52,7 +52,7 @@ public class BrightnessActivity extends AppCompatActivity {
             }
         });
 
-        SeekBar volumeSeekBar = (SeekBar) findViewById(R.id.volume_seek_bar);
+        SeekBar volumeSeekBar = findViewById(R.id.volume_seek_bar);
         volumeSeekBar.setMax(MAX_VOLUME_VALUE);
         int volume = getVolume(this);
         volumeSeekBar.setProgress(volume);
