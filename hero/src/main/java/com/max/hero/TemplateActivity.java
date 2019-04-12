@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.max.annotations.PageInfo;
 import com.max.annotations.Param;
 import com.max.baselib.PageKeys;
-import com.max.baselib.Router;
+import com.max.compiler.Router;
 
 /**
  * <p>Created by shixin on 2019/4/12.

@@ -6,9 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.max.annotations.PageInfo;
+import com.max.baselib.PageKeys;
+
 /**
  * <p>Created by shixin on 2018/11/6.
  */
+@PageInfo(alias = PageKeys.APP_RECYCLER_VIEW)
 public class RecyclerViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

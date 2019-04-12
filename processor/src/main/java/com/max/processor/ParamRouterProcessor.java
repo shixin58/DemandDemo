@@ -51,7 +51,7 @@ public class ParamRouterProcessor extends AbstractProcessor {
             String packageName = typeElement.asType().toString().substring(0, typeElement.asType().toString().lastIndexOf("."));
             String simpleClsName = typeElement.getSimpleName()+"_InjectParams";
             StringBuilder sb = new StringBuilder("package ").append(packageName).append(";\n\n")
-                    .append("import com.max.baselib.RouterUtils;\n\n")
+                    .append("import com.max.compiler.RouterUtils;\n\n")
                     .append("public class ").append(simpleClsName).append(" {\n\n")
                     .append("\tpublic static void inject(").append(typeElement.getSimpleName()).append(" activity) {\n");
             for (VariableElement variableElement:elements) {

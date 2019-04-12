@@ -1,4 +1,4 @@
-package com.max.baselib;
+package com.max.compiler;
 
 import android.app.Activity;
 

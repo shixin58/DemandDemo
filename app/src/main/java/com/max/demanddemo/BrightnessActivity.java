@@ -13,9 +13,13 @@ import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.max.annotations.PageInfo;
+import com.max.baselib.PageKeys;
+
 /**
  * <p>Created by shixin on 2018/12/27.
  */
+@PageInfo(alias = PageKeys.APP_BRIGHTNESS)
 public class BrightnessActivity extends AppCompatActivity {
     public static int MAX_BRIGHTNESS_VALUE = 255;
     public static int MAX_VOLUME_VALUE = 15;

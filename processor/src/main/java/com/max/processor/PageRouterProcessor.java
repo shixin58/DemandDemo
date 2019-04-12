@@ -40,7 +40,7 @@ public class PageRouterProcessor extends AbstractProcessor {
                 .append("import java.util.HashMap;\n")
                 .append("import java.util.Map;\n\n")
                 .append("public class PageInfoGenerated {\n")
-                .append("public static final Map<String, String> MAP = new HashMap<>();\n")
+                .append("\tpublic static final Map<String, String> MAP = new HashMap<>();\n")
                 .append("\tpublic static void savePages() {\n");
         for(Element element : roundEnvironment.getElementsAnnotatedWith(PageInfo.class)) {
             if (element.getKind() != ElementKind.CLASS) {

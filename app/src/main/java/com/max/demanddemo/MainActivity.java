@@ -1,12 +1,15 @@
 package com.max.demanddemo;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+
+import com.max.baselib.PackageNames;
+import com.max.baselib.PageKeys;
+import com.max.processor.PageInfoGenerated;
 
 import java.net.URISyntaxException;
 
@@ -25,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (view.getId()) {
             case R.id.tv_horizontal_scroll:
-                intent = new Intent(this, RecyclerViewActivity.class);
+                intent = new Intent();
+                intent.setClassName(PackageNames.APP+(BuildConfig.DEBUG?".debug":""),
+                        PageInfoGenerated.MAP.get(PageKeys.APP_RECYCLER_VIEW));
                 startActivity(intent);
                 break;
             case R.id.tv_set_brightness:
-                intent = new Intent(this, BrightnessActivity.class);
+                intent = new Intent();
+                intent.setClassName(PackageNames.APP+(BuildConfig.DEBUG?".debug":""),
+                        PageInfoGenerated.MAP.get(PageKeys.APP_BRIGHTNESS));
                 startActivity(intent);
                 break;
             case R.id.tv_invoke_bdvideo:
