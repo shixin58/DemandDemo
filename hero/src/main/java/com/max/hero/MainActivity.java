@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.tv_router:
                 intent.setClassName(PackageNames.HERO, PageInfoGenerated.MAP.get(PageKeys.HERO_ROUTER));
+                intent.putExtra("target", "relationship");
+                intent.putExtra("crazy", 99);
                 startActivity(intent);
                 break;
             case R.id.tv_template:
