@@ -1,7 +1,9 @@
-- jitpack使用 [![](https://jitpack.io/v/shixin58/DemandDemo.svg)](https://jitpack.io/#shixin58/DemandDemo)
+### Catalogue
 
-- **RecyclerView**嵌套，'编码流程'，可能问题
+- jitpack [![](https://jitpack.io/v/shixin58/DemandDemo.svg)](https://jitpack.io/#shixin58/DemandDemo)
 
-- Android 6.0适配，动态申请权限
+- **RecyclerView**嵌套, app跳转
 
-- 自定义Java注解处理器
+- 音量、亮度调节
+
+- Java注解处理器和Router
